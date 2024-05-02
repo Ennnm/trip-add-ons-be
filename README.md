@@ -1,24 +1,19 @@
 # README
+## Models
+This project tries to simulate a simplified case of adding add-ons to a trip
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ignoring the creation of:
+- users
+- user_trips
+- user_trip_add_ons
+- trips (as a table of unique trips to be reused in user_trips)
 
-Things you may want to cover:
+These are reduced to the trips and add_ons table where it is assumed that
+- all add_ons can be applied for all trips
 
-* Ruby version
+## Setup
+### run seeders
+`rails db:seed`
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### run server
+`rails server`
