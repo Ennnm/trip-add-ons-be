@@ -16,7 +16,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_082803) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer "total_spots"
-    t.integer "used_spots"
     t.float "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
