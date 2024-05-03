@@ -42,6 +42,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
+    # is not full sqlite3 as it doesnt allow `bin/rails dbconsole` but it migrates fine
     apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
@@ -52,10 +53,13 @@ COPY --from=build /rails /rails
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
-USER rails:rails
+# uncommented as there are files inside that require root access for reads and execution
+# USER rails:rails
 
 # Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+ENTRYPOINT ["entrypoint.sh"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
