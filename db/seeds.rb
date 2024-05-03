@@ -19,29 +19,24 @@ Trip.create!([{
 AddOn.create!([{
   name: "Single room upgrade",
   total_spots: 100,
-  used_spots: 0,
 }, {
   name: "Single room extreme upgrade",
   total_spots: 1,
-  used_spots: 1,
 }, {
   name: "Visit to cultural house",
   start_time: DateTime.new(2024, 6, 1, 15).to_time.to_i,
   end_time: DateTime.new(2024, 6, 1, 17).to_time.to_i,
   total_spots: 100,
-  used_spots: 0,
 }, {
   name: "Visit to theatre",
   start_time: DateTime.new(2024, 6, 1, 14).to_time.to_i, # conflicting time entry
   end_time: DateTime.new(2024, 6, 1, 16).to_time.to_i,
   total_spots: 100,
-  used_spots: 0,
 }, {
   name: "Visit to beer garden",
   start_time: DateTime.new(2024, 6, 1, 18).to_time.to_i,
   end_time: DateTime.new(2024, 6, 1, 20).to_time.to_i,
   total_spots: 100,
-  used_spots: 0,
 }])
 
 TripAddOn.create!([{
