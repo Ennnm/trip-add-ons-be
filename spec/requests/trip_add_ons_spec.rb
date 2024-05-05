@@ -17,7 +17,7 @@ RSpec.describe "TripAddOns", type: :request do
       add_on2 = FactoryBot.create(:add_on, custom_start_time: Time.now, custom_end_time: Time.now + 3.hour, custom_total_spots: 10)
       add_on_ids = [add_on1, add_on2].pluck(:id)
       post "/trip_add_ons", params: { trip_id: trip.id, add_on_ids: add_on_ids }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to be_successful
       expect(JSON.parse(response.body)).to eq({
                                              "status" => "error",
                                              "message" => "has conflicting times",
@@ -30,7 +30,7 @@ RSpec.describe "TripAddOns", type: :request do
       FactoryBot.create(:trip_add_on, add_on: add_on1)
       add_on_ids = [add_on1, add_on2].pluck(:id)
       post "/trip_add_ons", params: { trip_id: trip.id, add_on_ids: add_on_ids }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to be_successful
       expect(JSON.parse(response.body)).to eq({
                                              "status" => "error",
                                              "message" => "has unavailable add ons",

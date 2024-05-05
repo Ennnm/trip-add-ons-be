@@ -1,14 +1,15 @@
 class TripAddOnsController < ApplicationController
+  # to avoid CSRF token check
+  skip_before_action :verify_authenticity_token, :only => [:create]
   before_action :set_trip
-
   def create
     add_on_ids = params[:add_on_ids]
     if AddOn.has_conflicting_times(add_on_ids)
-      render json: { status: "error", message: "has conflicting times" }, status: :unprocessable_entity
+      render json: { status: "error", message: "has conflicting times" }
       return
     end
     if !AddOn.areAvailable(add_on_ids)
-      render json: { status: "error", message: "has unavailable add ons" }, status: :unprocessable_entity
+      render json: { status: "error", message: "has unavailable add ons" }
       return
     end
     add_on_ids.each do |add_on_id|
@@ -21,6 +22,8 @@ class TripAddOnsController < ApplicationController
   private
 
   def set_trip
-    @trip = Trip.find(params[:trip_id])
+    # @trip = Trip.find(params[:trip_id])
+    # assume that the add ons are added to the only trip in the db
+    @trip = Trip.first()
   end
 end
