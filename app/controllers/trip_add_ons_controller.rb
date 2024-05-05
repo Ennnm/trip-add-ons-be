@@ -16,7 +16,7 @@ class TripAddOnsController < ApplicationController
       add_on = AddOn.find_by(id: add_on_id)
       @trip.add_ons << add_on if add_on.present?
     end
-    render json: { status: "success", message: "Add-ons were successfully added to the trip." }
+    render json: { status: "success", message: "Add-ons were successfully added to the trip.", data: @trip.add_ons}
   end
 
   private

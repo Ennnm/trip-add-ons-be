@@ -12,8 +12,12 @@ Trip.destroy_all
 AddOn.destroy_all
 TripAddOn.destroy_all
 
-trip1 = Trip.create!([{
+Trip.create!([{
   name: "Prague 7d6n",
+}])
+
+trip2 = Trip.create!([{
+  name: "Prague 7d6n two",
 }])
 
 addOns = AddOn.create!([{
@@ -45,6 +49,6 @@ addOns = AddOn.create!([{
 }])
 
 TripAddOn.create!([{
-  trip_id: trip1[0].id,
+  trip_id: trip2[0].id,
   add_on_id: addOns[1].id,
 }])
